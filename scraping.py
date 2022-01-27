@@ -21,9 +21,9 @@ def car_features(keys):
         img_url = features.find("div", {"data-index": 0}).find("img").get("data-src", features.find("div", {"data-index": 0}).find("img").get("src"))
         link = features.find("a", {"class": "vehicle-card-link"}).get("href") # Car detail HREF
         car_deatils_link = ("https://www.cars.com/" + link)
-        car_details(car_deatils_link)
-        transmission = car_details(car_deatils_link)[1]
-        color = car_details(car_deatils_link)[0]
+        color_trans= car_details(car_deatils_link)
+        transmission = color_trans[1]
+        color = color_trans[0]
 
         data.append({"Title": title , "Price": price, "Year": year, "Brand": brand,  "Img_url": img_url, "Transmission": transmission, "Exterior": color})
 
