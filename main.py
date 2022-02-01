@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from configparser import ConfigParser
 
 from scraping import car_features
+from db import  show_db, delete_db
 
 config = ConfigParser()
 config.read("config.ini")
@@ -25,6 +26,15 @@ def car_list():
     }
 
     return jsonify(car_features(keys))
+
+@app.route("/list")
+def db_list():
+    return jsonify(show_db())
+
+@app.route("/delete")
+def db_delete():
     
+    return delete_db()
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
