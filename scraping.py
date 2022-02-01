@@ -3,6 +3,8 @@ from configparser import ConfigParser
 import lxml
 from bs4 import BeautifulSoup
 
+from db import insert_db
+
 
 config = ConfigParser()
 config.read("config.ini")
@@ -24,10 +26,8 @@ def car_features(keys):
         color_trans= car_details(car_deatils_link)
         transmission = color_trans[1]
         color = color_trans[0]
-
-        data.append({"Title": title , "Price": price, "Year": year, "Brand": brand,  "Img_url": img_url, "Transmission": transmission, "Exterior": color})
-
-
+        data.append({"Title": title ,  "Brand": brand, "Year": year, "Price": price, "Exterior": color, "Transmission": transmission, "Img_url": img_url})
+    insert_db(data)
     return data
 
 def car_details(car_deatils_link):
